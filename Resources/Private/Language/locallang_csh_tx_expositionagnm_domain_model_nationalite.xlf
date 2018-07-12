@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-07-05T14:21:37Z" product-name="exposition_ag_nm">
+		<header/>
+		<body>
+			<trans-unit id="tx_exposition_ag_nm_domain_model_agnm1">
+				<source>Expo AGNM</source>
+			</trans-unit>
+			<trans-unit id="tx_exposition_ag_nm_domain_model_agnm1.description">
+				<source>Projet DAWIN expositon</source>
+			</trans-unit>
+			<trans-unit id="nom.description">
+				<source>nom</source>
+			</trans-unit>
+			<trans-unit id="code_i_s_o.description">
+				<source>code iso</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

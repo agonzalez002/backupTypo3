@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>Listing for Artiste</h1>
+
+<f:flashMessages />
+		<f:widget.paginate objects="{artistes}" as="paginatedArtistes"
+						   configuration="{itemsPerPage: 8, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+			<div class="artist-list">
+				<f:for each="{paginatedArtistes}" as="artiste">
+					<div class="artist">
+						<f:image  src="{artiste.photo.originalResource.publicUrl}" />
+
+						<div class="lien">
+							<p>{artiste.nom}</p>
+							<f:link.action class="btn btn-primary" action="show" arguments="{artiste : artiste}">
+								<p class="details">En savoir +</p>
+							</f:link.action>
+						</div>
+					</div>
+				</f:for>
+			</div>
+		</f:widget.paginate>
+
+
+	<!--<f:link.action class="btn btn-primary" action="new">New Artiste</f:link.action>-->
+</f:section>
+</html>

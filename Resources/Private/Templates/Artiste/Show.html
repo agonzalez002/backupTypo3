@@ -1,0 +1,60 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+
+This Template is responsible for displaying a single view for a domain object
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        Show.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+<h1>{artiste.nom}</h1>
+
+<f:flashMessages />
+<div class="info">
+  <f:image  src="{artiste.photo.originalResource.publicUrl}" />
+
+  <div class="txt">
+    <p><span class="label">Nom : </span> <span class="contenu">{artiste.nom}</span></p>
+    <p><span class="label">Date de naissance : </span> <span class="contenu">{artiste.dateNaissance -> f:format.date()}</span></p>
+    <p><span class="label">Date de décès :</span> <span class="contenu">{artiste.dateDeces -> f:format.date()}</span></p>
+    <p><span class="label">Influences :</span> <span class="contenu">{artiste.influences}</span></p>
+    <p><span class="label">Nationalité :</span> <span class="contenu">{artiste.nationalite.0.nom}</span></p>
+  </div>
+</div>
+
+  <div class="bio">
+    <h2>Biographie :</h2>
+    <p>{artiste.biographie}</p>
+  </div>
+
+  <div class="oeuvres">
+    <h3>Oeuvres</h3>
+
+    <f:widget.paginate objects="{artiste.oeuvres}" as="paginatedOeuvres"
+                       configuration="{itemsPerPage: 4, insertAbove: 0, insertBelow: 1, maximumNumberOfLinks: 10}">
+      <div class="artist-list">
+        <f:for each="{paginatedOeuvres}" as="oeuvre">
+          <div class="artist">
+            <f:image  src="{oeuvre.photo.originalResource.publicUrl}" />
+
+            <div class="lien">
+              <p>{oeuvre.Intitule}</p>
+              <f:link.action class="btn btn-primary" action="show" arguments="{oeuvre : oeuvre}" controller="Oeuvres" pageUid="{settings.detailPid}">
+                <p class="details">En savoir +</p>
+              </f:link.action>
+            </div>
+          </div>
+        </f:for>
+      </div>
+    </f:widget.paginate>
+
+  </div>
+<f:link.action class="btn btn-primary" action="list">Back to list</f:link.action>
+</f:section>
+</html>
